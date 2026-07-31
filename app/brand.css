@@ -1,0 +1,185 @@
+/* YOSSEUF RADWAN — Brand layer
+   A reversible identity layer over the product UI. */
+
+:root {
+  --yr-obsidian: #070709;
+  --yr-carbon: #0d0d11;
+  --yr-surface: #121218;
+  --yr-line: #292832;
+  --yr-ivory: #f4f1ea;
+  --yr-muted: #8e8b94;
+  --yr-apex: #a98bff;
+  --yr-apex-deep: #6f49db;
+  --yr-signal: #69e0b2;
+  --yr-warm: #e9b86f;
+  --yr-radius: 12px;
+  --yr-shadow: 0 24px 80px rgba(0,0,0,.38);
+}
+
+body {
+  background: var(--yr-obsidian);
+  color: var(--yr-ivory);
+  letter-spacing: -.005em;
+}
+
+.shell {
+  background:
+    radial-gradient(circle at 90% -5%, rgba(123,77,223,.22), transparent 28%),
+    radial-gradient(circle at 30% 105%, rgba(105,224,178,.07), transparent 27%),
+    var(--yr-obsidian);
+}
+
+.sidebar {
+  background: rgba(8,8,11,.97);
+  border-right-color: var(--yr-line);
+}
+
+/* The Apex monogram */
+.brand-mark {
+  grid-template-columns: 42px 1fr;
+  grid-template-rows: 24px 16px;
+  min-width: 190px;
+}
+.brand-mark > span {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  color: transparent;
+  border: 0;
+  transform: none;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(169,139,255,.22), rgba(111,73,219,.06));
+  box-shadow: inset 0 0 0 1px rgba(169,139,255,.38), 0 10px 28px rgba(111,73,219,.18);
+}
+.brand-mark > span::before,
+.brand-mark > span::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(180deg, #f4f1ea, #a98bff 72%);
+  border-radius: 999px;
+  transform-origin: bottom center;
+}
+.brand-mark > span::before {
+  width: 4px;
+  height: 21px;
+  left: 11px;
+  top: 7px;
+  transform: rotate(-36deg);
+}
+.brand-mark > span::after {
+  width: 4px;
+  height: 21px;
+  right: 11px;
+  top: 7px;
+  transform: rotate(36deg);
+}
+.brand-mark b {
+  font-size: 0;
+  letter-spacing: .18em;
+}
+.brand-mark b::after {
+  content: "YOSSEUF RADWAN";
+  font-size: 11px;
+  font-weight: 750;
+}
+.brand-mark small {
+  color: #77747e;
+  letter-spacing: .32em;
+}
+
+.nav-item.active {
+  background: linear-gradient(90deg, rgba(169,139,255,.17), rgba(18,18,24,.9));
+  box-shadow: inset 2px 0 var(--yr-apex);
+}
+.nav-item:hover { background: #15151b; }
+.nav-item i { background: rgba(169,139,255,.14); color: #cabdff; }
+
+.profile > span {
+  background: linear-gradient(145deg, #30253f, #18151f);
+  color: #d8ceff;
+  box-shadow: inset 0 0 0 1px rgba(169,139,255,.24);
+}
+.profile b { font-size: 0; }
+.profile b::after { content: "Yosseuf Radwan"; font-size: 10px; }
+.profile small { font-size: 0; }
+.profile small::after { content: "Founder · Creative Director"; font-size: 8px; }
+
+header {
+  background: rgba(7,7,9,.78);
+  border-bottom-color: rgba(255,255,255,.07);
+}
+header p span { color: var(--yr-apex); }
+
+.primary,
+.generate,
+.view-actions button:last-child {
+  background: linear-gradient(135deg, var(--yr-apex), var(--yr-apex-deep));
+  box-shadow: 0 10px 32px rgba(111,73,219,.24);
+}
+.primary:hover,
+.generate:hover,
+.view-actions button:last-child:hover { filter: brightness(1.08); transform: translateY(-1px); }
+button { transition: transform .18s ease, filter .18s ease, background .18s ease, border-color .18s ease; }
+
+.hero-card,
+.production-hero {
+  border-color: rgba(169,139,255,.22);
+  background:
+    radial-gradient(circle at 82% 22%, rgba(169,139,255,.18), transparent 31%),
+    linear-gradient(118deg, #101014 0%, #14121a 58%, #171222 100%);
+  box-shadow: var(--yr-shadow);
+}
+.hero-card::after {
+  content: "YR / 01";
+  position: absolute;
+  right: 27px;
+  bottom: 20px;
+  font: 7px ui-monospace, monospace;
+  letter-spacing: .26em;
+  color: rgba(244,241,234,.23);
+}
+.hero-card h2 span,
+.production-hero h2 span { color: #b69dff; }
+.eyebrow { color: #ac98eb; }
+.eyebrow i { background: var(--yr-signal); box-shadow: 0 0 10px rgba(105,224,178,.7); }
+
+.orb-core {
+  background: radial-gradient(circle at 36% 32%, #fff 0, #ece6ff 5%, #a98bff 22%, #4b2c85 50%, #09080d 75%);
+  box-shadow: 0 0 62px rgba(132,92,239,.48), inset -12px -15px 28px #05040a;
+}
+.orbit { border-color: rgba(169,139,255,.34); }
+.orbit::after { background: #d2c5ff; box-shadow: 0 0 16px #a98bff; }
+
+.panel,
+.metrics,
+.production-table,
+.stage-strip {
+  background: rgba(15,15,20,.92);
+  border-color: rgba(255,255,255,.085);
+}
+.panel:hover { border-color: rgba(169,139,255,.22); }
+
+.violet { background: rgba(169,139,255,.12); color: #bca7ff; }
+.green, .live, .metrics .up { color: var(--yr-signal); }
+.amber { color: var(--yr-warm); }
+
+.usage > div i,
+.progress i,
+.stage-progress i.filled,
+.production-score > div i {
+  background: linear-gradient(90deg, var(--yr-apex-deep), var(--yr-apex));
+}
+
+.toast {
+  background: var(--yr-ivory);
+  color: #151318;
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+::selection { background: rgba(169,139,255,.36); color: #fff; }
+
+@media (max-width: 1000px) {
+  .brand-mark { min-width: 0; }
+  .brand-mark b::after { content: ""; }
+}
