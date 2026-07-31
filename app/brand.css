@@ -1,45 +1,94 @@
-/* YOSSEUF RADWAN — Brand layer
-   A reversible identity layer over the product UI. */
-
+/* YOSSEUF Foundation v1.0.0 product adapter.
+   Product rules consume semantic roles only. Palette values live in this root adapter. */
 :root {
-  --yr-obsidian: #070709;
-  --yr-carbon: #0d0d11;
-  --yr-surface: #121218;
-  --yr-line: #292832;
-  --yr-ivory: #f4f1ea;
-  --yr-muted: #8e8b94;
-  --yr-apex: #a98bff;
-  --yr-apex-deep: #6f49db;
-  --yr-signal: #69e0b2;
-  --yr-warm: #e9b86f;
-  --yr-radius: 12px;
-  --yr-shadow: 0 24px 80px rgba(0,0,0,.38);
+  --palette-neutral-0: #ffffff;
+  --palette-neutral-50: #f7f3e8;
+  --palette-neutral-300: #b8bab8;
+  --palette-neutral-500: #7f878d;
+  --palette-neutral-700: #3c444a;
+  --palette-neutral-800: #293036;
+  --palette-neutral-850: #1d2227;
+  --palette-neutral-900: #111519;
+  --palette-neutral-950: #080b0d;
+  --palette-neutral-1000: #000000;
+  --palette-gold-100: #f8ebbd;
+  --palette-gold-300: #e9ce7d;
+  --palette-gold-500: #d7ad43;
+  --palette-gold-600: #b98b25;
+  --palette-gold-700: #8c681d;
+  --palette-green-100: #cdf5e2;
+  --palette-green-500: #54d39a;
+  --palette-green-900: #123b2b;
+  --palette-red-100: #ffdada;
+  --palette-red-500: #ef7777;
+  --palette-blue-100: #d8e9ff;
+  --palette-blue-500: #6ca8ff;
+
+  --surface-canvas: var(--palette-neutral-950);
+  --surface-sidebar: color-mix(in srgb, var(--palette-neutral-950) 97%, transparent);
+  --surface-panel: var(--palette-neutral-900);
+  --surface-panel-raised: var(--palette-neutral-850);
+  --surface-control: color-mix(in srgb, var(--palette-neutral-850) 82%, var(--palette-neutral-950));
+  --surface-overlay: color-mix(in srgb, var(--palette-neutral-1000) 76%, transparent);
+  --text-primary: var(--palette-neutral-50);
+  --text-secondary: var(--palette-neutral-300);
+  --text-muted: var(--palette-neutral-500);
+  --text-inverse: var(--palette-neutral-950);
+  --border-subtle: color-mix(in srgb, var(--palette-neutral-300) 13%, transparent);
+  --border-strong: color-mix(in srgb, var(--palette-gold-300) 34%, transparent);
+  --accent-primary: var(--palette-gold-500);
+  --accent-primary-hover: var(--palette-gold-300);
+  --accent-primary-pressed: var(--palette-gold-600);
+  --accent-on-primary: var(--palette-neutral-950);
+  --status-success: var(--palette-green-500);
+  --status-danger: var(--palette-red-500);
+  --status-info: var(--palette-blue-500);
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--palette-gold-500) 38%, transparent);
+  --shadow-sm: 0 4px 14px color-mix(in srgb, var(--palette-neutral-1000) 14%, transparent);
+  --shadow-md: 0 14px 40px color-mix(in srgb, var(--palette-neutral-1000) 20%, transparent);
+  --shadow-lg: 0 24px 70px color-mix(in srgb, var(--palette-neutral-1000) 32%, transparent);
+  --radius-sm: .5rem;
+  --radius-md: .75rem;
+  --radius-lg: 1.125rem;
+  --motion-fast: 120ms;
+  --motion-normal: 180ms;
+  --motion-slow: 280ms;
+  --ease-standard: cubic-bezier(.2, 0, 0, 1);
+
+  /* Temporary compatibility aliases. Remove after all legacy CSS is converted. */
+  --ink: var(--surface-canvas);
+  --panel: var(--surface-panel);
+  --line: var(--border-subtle);
+  --muted: var(--text-muted);
+  --violet: var(--accent-primary);
+  --green: var(--status-success);
 }
 
 body {
-  background: var(--yr-obsidian);
-  color: var(--yr-ivory);
+  background: var(--surface-canvas);
+  color: var(--text-primary);
   letter-spacing: -.005em;
 }
 
 .shell {
   background:
-    radial-gradient(circle at 90% -5%, rgba(123,77,223,.22), transparent 28%),
-    radial-gradient(circle at 30% 105%, rgba(105,224,178,.07), transparent 27%),
-    var(--yr-obsidian);
+    radial-gradient(circle at 90% -5%, color-mix(in srgb, var(--accent-primary) 11%, transparent), transparent 28%),
+    radial-gradient(circle at 30% 105%, color-mix(in srgb, var(--status-success) 5%, transparent), transparent 27%),
+    var(--surface-canvas);
 }
 
 .sidebar {
-  background: rgba(8,8,11,.97);
-  border-right-color: var(--yr-line);
+  background: var(--surface-sidebar);
+  border-inline-end-color: var(--border-subtle);
+  border-right-color: var(--border-subtle);
 }
 
-/* The Apex monogram */
 .brand-mark {
   grid-template-columns: 42px 1fr;
   grid-template-rows: 24px 16px;
   min-width: 190px;
 }
+
 .brand-mark > span {
   position: relative;
   width: 34px;
@@ -47,137 +96,110 @@ body {
   color: transparent;
   border: 0;
   transform: none;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   overflow: hidden;
-  background: linear-gradient(145deg, rgba(169,139,255,.22), rgba(111,73,219,.06));
-  box-shadow: inset 0 0 0 1px rgba(169,139,255,.38), 0 10px 28px rgba(111,73,219,.18);
+  background: color-mix(in srgb, var(--accent-primary) 12%, var(--surface-panel));
+  box-shadow: inset 0 0 0 1px var(--border-strong), var(--shadow-sm);
 }
+
 .brand-mark > span::before,
 .brand-mark > span::after {
   content: "";
   position: absolute;
-  background: linear-gradient(180deg, #f4f1ea, #a98bff 72%);
+  width: 4px;
+  height: 21px;
+  top: 7px;
+  background: linear-gradient(180deg, var(--text-primary), var(--accent-primary));
   border-radius: 999px;
   transform-origin: bottom center;
 }
-.brand-mark > span::before {
-  width: 4px;
-  height: 21px;
-  left: 11px;
-  top: 7px;
-  transform: rotate(-36deg);
-}
-.brand-mark > span::after {
-  width: 4px;
-  height: 21px;
-  right: 11px;
-  top: 7px;
-  transform: rotate(36deg);
-}
-.brand-mark b {
-  font-size: 0;
-  letter-spacing: .18em;
-}
-.brand-mark b::after {
-  content: "YOSSEUF RADWAN";
-  font-size: 11px;
-  font-weight: 750;
-}
-.brand-mark small {
-  color: #77747e;
-  letter-spacing: .32em;
-}
+.brand-mark > span::before { left: 11px; transform: rotate(-36deg); }
+.brand-mark > span::after { right: 11px; transform: rotate(36deg); }
+.brand-mark b { font-size: 0; letter-spacing: .18em; }
+.brand-mark b::after { content: "YOSSEUF RADWAN"; font-size: 11px; font-weight: 700; }
+.brand-mark small { color: var(--text-muted); letter-spacing: .32em; }
 
 .nav-item.active {
-  background: linear-gradient(90deg, rgba(169,139,255,.17), rgba(18,18,24,.9));
-  box-shadow: inset 2px 0 var(--yr-apex);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent-primary) 12%, transparent), var(--surface-panel));
+  box-shadow: inset 2px 0 var(--accent-primary);
 }
-.nav-item:hover { background: #15151b; }
-.nav-item i { background: rgba(169,139,255,.14); color: #cabdff; }
-
-.profile > span {
-  background: linear-gradient(145deg, #30253f, #18151f);
-  color: #d8ceff;
-  box-shadow: inset 0 0 0 1px rgba(169,139,255,.24);
-}
+.nav-item:hover { background: var(--surface-panel-raised); color: var(--text-primary); }
+.nav-item i { background: color-mix(in srgb, var(--accent-primary) 12%, transparent); color: var(--accent-primary-hover); }
+.profile > span { background: var(--surface-panel-raised); color: var(--accent-primary-hover); box-shadow: inset 0 0 0 1px var(--border-strong); }
 .profile b { font-size: 0; }
 .profile b::after { content: "Yosseuf Radwan"; font-size: 10px; }
 .profile small { font-size: 0; }
 .profile small::after { content: "Founder · Creative Director"; font-size: 8px; }
 
-header {
-  background: rgba(7,7,9,.78);
-  border-bottom-color: rgba(255,255,255,.07);
-}
-header p span { color: var(--yr-apex); }
+header { background: color-mix(in srgb, var(--surface-canvas) 82%, transparent); border-bottom-color: var(--border-subtle); }
+header p span,
+.hero-card h2 span,
+.production-hero h2 span,
+.eyebrow { color: var(--accent-primary-hover); }
 
 .primary,
 .generate,
 .view-actions button:last-child {
-  background: linear-gradient(135deg, var(--yr-apex), var(--yr-apex-deep));
-  box-shadow: 0 10px 32px rgba(111,73,219,.24);
+  color: var(--accent-on-primary);
+  background: var(--accent-primary);
+  box-shadow: var(--shadow-sm);
 }
 .primary:hover,
 .generate:hover,
-.view-actions button:last-child:hover { filter: brightness(1.08); transform: translateY(-1px); }
-button { transition: transform .18s ease, filter .18s ease, background .18s ease, border-color .18s ease; }
+.view-actions button:last-child:hover { background: var(--accent-primary-hover); transform: translateY(-1px); }
+.primary:active,
+.generate:active,
+.view-actions button:last-child:active { background: var(--accent-primary-pressed); transform: translateY(0); }
+
+button,
+a,
+textarea { transition: color var(--motion-normal) var(--ease-standard), background var(--motion-normal) var(--ease-standard), border-color var(--motion-normal) var(--ease-standard), transform var(--motion-normal) var(--ease-standard); }
+button:focus-visible,
+a:focus-visible,
+textarea:focus-visible { outline: 0; box-shadow: var(--focus-ring); }
+button:disabled { opacity: .45; cursor: not-allowed; }
 
 .hero-card,
 .production-hero {
-  border-color: rgba(169,139,255,.22);
-  background:
-    radial-gradient(circle at 82% 22%, rgba(169,139,255,.18), transparent 31%),
-    linear-gradient(118deg, #101014 0%, #14121a 58%, #171222 100%);
-  box-shadow: var(--yr-shadow);
+  border-color: var(--border-strong);
+  background: radial-gradient(circle at 82% 22%, color-mix(in srgb, var(--accent-primary) 9%, transparent), transparent 31%), linear-gradient(118deg, var(--surface-panel), var(--surface-panel-raised));
+  box-shadow: var(--shadow-lg);
 }
-.hero-card::after {
-  content: "YR / 01";
-  position: absolute;
-  right: 27px;
-  bottom: 20px;
-  font: 7px ui-monospace, monospace;
-  letter-spacing: .26em;
-  color: rgba(244,241,234,.23);
-}
-.hero-card h2 span,
-.production-hero h2 span { color: #b69dff; }
-.eyebrow { color: #ac98eb; }
-.eyebrow i { background: var(--yr-signal); box-shadow: 0 0 10px rgba(105,224,178,.7); }
+.hero-card::after { content: "YR / 01"; position: absolute; inset-inline-end: 27px; bottom: 20px; font: 7px ui-monospace, monospace; letter-spacing: .26em; color: var(--text-muted); opacity: .45; }
+.eyebrow i { background: var(--status-success); box-shadow: 0 0 10px color-mix(in srgb, var(--status-success) 70%, transparent); }
 
-.orb-core {
-  background: radial-gradient(circle at 36% 32%, #fff 0, #ece6ff 5%, #a98bff 22%, #4b2c85 50%, #09080d 75%);
-  box-shadow: 0 0 62px rgba(132,92,239,.48), inset -12px -15px 28px #05040a;
-}
-.orbit { border-color: rgba(169,139,255,.34); }
-.orbit::after { background: #d2c5ff; box-shadow: 0 0 16px #a98bff; }
+.orb-core { background: radial-gradient(circle at 36% 32%, var(--text-primary), var(--accent-primary-hover) 18%, var(--accent-primary) 34%, var(--palette-gold-700) 58%, var(--surface-canvas) 76%); box-shadow: 0 0 62px color-mix(in srgb, var(--accent-primary) 28%, transparent), inset -12px -15px 28px var(--surface-canvas); }
+.orbit { border-color: var(--border-strong); }
+.orbit::after { background: var(--accent-primary-hover); box-shadow: 0 0 16px var(--accent-primary); }
 
 .panel,
 .metrics,
 .production-table,
-.stage-strip {
-  background: rgba(15,15,20,.92);
-  border-color: rgba(255,255,255,.085);
-}
-.panel:hover { border-color: rgba(169,139,255,.22); }
-
-.violet { background: rgba(169,139,255,.12); color: #bca7ff; }
-.green, .live, .metrics .up { color: var(--yr-signal); }
-.amber { color: var(--yr-warm); }
-
+.stage-strip { background: color-mix(in srgb, var(--surface-panel) 92%, transparent); border-color: var(--border-subtle); }
+.panel:hover { border-color: var(--border-strong); }
+.violet,
+.amber { background: color-mix(in srgb, var(--accent-primary) 10%, transparent); color: var(--accent-primary-hover); }
+.green,
+.live,
+.metrics .up { color: var(--status-success); }
 .usage > div i,
 .progress i,
 .stage-progress i.filled,
-.production-score > div i {
-  background: linear-gradient(90deg, var(--yr-apex-deep), var(--yr-apex));
-}
+.production-score > div i { background: var(--accent-primary); }
+.toast { background: var(--text-primary); color: var(--text-inverse); border: 1px solid var(--border-subtle); }
+::selection { background: color-mix(in srgb, var(--accent-primary) 38%, transparent); color: var(--text-primary); }
 
-.toast {
-  background: var(--yr-ivory);
-  color: #151318;
-  border: 1px solid rgba(0,0,0,.08);
-}
+[dir="rtl"] .nav-item { text-align: right; }
+[dir="rtl"] .nav-item i { margin-left: 0; margin-inline-start: auto; }
+[dir="rtl"] .profile em { margin-left: 0; margin-inline-start: auto; }
 
-::selection { background: rgba(169,139,255,.36); color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .primary:hover,
+  .generate:hover,
+  .view-actions button:last-child:hover { transform: none; }
+}
 
 @media (max-width: 1000px) {
   .brand-mark { min-width: 0; }
