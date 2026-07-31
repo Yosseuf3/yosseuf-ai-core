@@ -12,7 +12,7 @@
     "test": "node --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "validate:design-system": "node scripts/validate-design-system.mjs",
-    "quality": "npm run validate:design-system && npm run lint && npm test && npm run build",
+    "quality": "npm run validate:design-system && npm run lint && npm run build && npm test",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
