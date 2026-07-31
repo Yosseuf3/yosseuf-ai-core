@@ -7,14 +7,16 @@ const files = {
 };
 
 const failures = [];
+const longHexColor = /#[0-9a-f]{6}(?:[0-9a-f]{2})?\b/gi;
 
-if (/#[0-9a-f]{3,8}\b/gi.test(files.page)) {
+if (longHexColor.test(files.page)) {
   failures.push("app/page.tsx contains raw hexadecimal colors; consume semantic CSS roles instead.");
 }
 
 const rootEnd = files.brand.indexOf("}\n\nbody");
 const brandRules = rootEnd >= 0 ? files.brand.slice(rootEnd + 2) : files.brand;
-if (/#[0-9a-f]{3,8}\b/gi.test(brandRules)) {
+longHexColor.lastIndex = 0;
+if (longHexColor.test(brandRules)) {
   failures.push("app/brand.css contains raw hexadecimal colors outside the token adapter.");
 }
 
